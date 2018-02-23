@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends 'first_app/base.html' %}
+{% load staticfiles %}
+{% load my_extras %}
+
+	{% block body_block %}	
+
+
+		<h1>Hello! This is first_app/index.html</h1>
+		{{ insert_me }}	
+
+
+		<h1>{{ name | upper }}</h1>
+		<h1>{{ name | cut_string:"ahammed" }}</h1>
+		<h1>{{ number | add:"99" }}</h1>
+
+		<img src="{% static 'images/Aqua.png' %}" alt="EBL Aqua Card Info">
+
+		<h2>Here are your Website Access Records:</h2>
+
+		
+		<h2><a href="{% url 'form_name' %}">Go to the /formpage to fill out the form</a></h2>
+
+
+		<h1><a href="{% url 'admin:index' %}">Go to the Admin Panel</a></h1>
+
+		<div class="access_records">
+			
+			{% if access_records %}
+			
+				<table>
+					<thead>
+						<th>Site Name</th>
+						<th>Date Accessed</th>
+					</thead>
+
+					<tbody>
+							
+						{% for acc in access_records %}
+							<tr>
+								<td>{{ acc.name }}</td>
+								<td>{{ acc.date }}</td>
+							</tr>
+						{% endfor %}	
+
+					</tbody>
+
+				</table>
+
+			{% else %}
+				<p>NO ACCESS RECORD FOUND!</p>
+			{% endif %}
+
+		</div>
+
+	{% endblock %}	
+		
+
